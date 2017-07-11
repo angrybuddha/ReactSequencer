@@ -1,0 +1,12 @@
+.Row {
+  display: inline-block;
+  border: 5px solid black;
+}
+
+.Off {
+  border: 5px solid black;
+}
+
+.On {
+  border: 5px solid yellow;
+}

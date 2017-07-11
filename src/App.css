@@ -18,6 +18,15 @@
   font-size: large;
 }
 
+#Highlight {
+  display: block;
+  position: absolute;
+  top:0px;
+  width: 776px;
+  height:115px;
+  border: 2px dashed yellow;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

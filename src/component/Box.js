@@ -11,56 +11,45 @@ class Box extends Component {
     //bind handlers
     this.handleClick = this.handleClick.bind(this);
     this.audio.src = require('../audio/808-Kits/' + this.props._folder +'/' + this.props._src + '.wav');
-    this.state = {count: 0, style: 'Box Off', toggle: true};
+    this.state = {count: 0, style: 'Box Off', toggle: false};
     
   }
 
   handleClick(){
-    //alert("clicked");
-    clearInterval(this.timerID);
 
     if(this.state.toggle){
-      this.playSample();
+      this.turnOff();
     }else{
-      this.stopSample();
+      this.turnOn();
     }
+
     //toggle the on off state
     this.setState(prevState => ({
       toggle: !prevState.toggle
     }));
-
-  }
-
-  playSample(){
     
-    this.timerID = setInterval(
-      () => this.tick(),
-      2000
-    );
-
-    this.setState({style: 'Box On'});
-    this.audio.load();
-    this.audio.play();
   }
 
-  stopSample(){
-    //this.audio.pause();
+  turnOn(){
+    
+    this.setState({style: 'Box On'});
+
+  }
+
+  turnOff(){
+    this.audio.pause();
     this.setState({style: 'Box Off'});
   }
   
-  //componentDidMount() {
-    
-  //}
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
+  componentDidUpdate()
+  {
+    if(this.state.toggle){
+      this.playSample()
+    }
   }
 
-  tick() {
-    var _iter = this.state.count + 1;
-    this.setState({
-      count: _iter
-    });
+  playSample() {
+
     this.audio.load();
     this.audio.play();
   }
@@ -68,7 +57,7 @@ class Box extends Component {
   render() {
     return (
       <div className={this.state.style} onClick={this.handleClick}>
-        {this.state.count}
+        *
       </div>
     );
   }

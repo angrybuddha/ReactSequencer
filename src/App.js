@@ -2,30 +2,53 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Box from './component/Box.js';
+import Row from './component/Row.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {date: new Date()};
+    this.state = {count: 0};
   }
+  //start the sequencer 
   componentDidMount(){
-
+    this.timerID = setInterval(
+      () => this.tick(),
+      500
+    );
   }
+  //clear interval when unload sequencer
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
   tick(){
     
+    var _iter = this.state.count + 1;
+
+    if(_iter > 7){
+      _iter = 0;
+    }
+
+    this.setState({
+      count: _iter
+    });
+
   }
   render() {
     return (
       <div>
-        <Box _folder = 'Chh' _src = 'CHH-0001' />
-        <Box _folder = 'Kick' _src = 'kick-0006' />
-        <Box _folder = 'Clap' _src = 'clap-0002' />
-        <Box _folder = 'Ohh' _src = 'OHH-0001' />
-        <Box _folder = 'Perc' _src = 'perc-0001' />
-        <Box _folder = 'Rim' _src = 'RIM-0001' />
-        <Box _folder = 'Snare' _src = 'snare-0002' />
+        <div id="Highlight" style={{top: (this.state.count)*120 - 120}}></div>
+        <div>
+        <Row _id = '0' _count = {this.state.count} />
+        <Row _id = '1' _count = {this.state.count} />
+        <Row _id = '2' _count = {this.state.count} />
+        <Row _id = '3' _count = {this.state.count} />
+        <Row _id = '4' _count = {this.state.count} />
+        <Row _id = '5' _count = {this.state.count} />
+        <Row _id = '6' _count = {this.state.count} />
+        <Row _id = '7' _count = {this.state.count} />
+        </div>
       </div>
-      
     );
   }
 }
