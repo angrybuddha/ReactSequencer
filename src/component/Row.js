@@ -13,7 +13,7 @@ class Row extends Component {
 
   componentWillReceiveProps()
   {
-    if(this.props._count == this.state.id)
+    if(this.props._count === this.state.id)
     {
         
         this.turnOn();
@@ -28,13 +28,13 @@ class Row extends Component {
   turnOn()
   {
     //this.state.style = 'Row On';
-    this.state.renderBool = true;
+    this.setState({renderBool: true});
   }
 
   turnOff()
   {
     //this.state.style = 'Row Off';
-    this.state.renderBool = false;
+    this.setState({renderBool :false});
   }
 
   shouldComponentUpdate(nextProps, nextState) {

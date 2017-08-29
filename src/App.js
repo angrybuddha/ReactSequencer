@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import Box from './component/Box.js';
 import Row from './component/Row.js';
+
+//import ReactTestUtils from 'react-dom/test-utils';
+import ShallowRenderer from 'react-test-renderer/shallow';
+
+// in your test:
+const renderer = new ShallowRenderer();
+renderer.render(<App />);
+const result = renderer.getRenderOutput();
+
+expect(result.type).toBe('div');
+expect(result.props.children).toEqual([
+  <span className="heading">Title</span>,
+]);
+
 
 class App extends Component {
   constructor(props) {
